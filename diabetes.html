@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Diabetes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body class="bgg">
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <a href="index.html">Home</a>
+    <a href="diabetes.html">Diabetes</a>
+    <a href="contacts.html">Contact Helpline</a>
+    <a href="symptoms.html">Check Your Symptoms</a>
+  <a href="saferange.html">Check Your Safe Range</a>
+
+  </div>
+
+  <div class="left-content">
+    <h1>About Diabetes</h1>
+    <p style="font-size:20px;">Diabetes is a chronic condition that affects how your body turns food into energy.
+      Early detection and awareness can prevent complications. This website helps you
+      check symptoms and guides you to seek help when needed.</p>
+      <!-- YouTube Video Embed -->
+<div class="video-container" style="text-align:center; margin:20px 0;">
+  <iframe 
+    width="980" 
+    height="560" 
+    src="https://www.youtube.com/embed/t6LaASZHDgc?si=eu-QjKLoeI-Hgp5U" 
+    title="The Story of Sugar" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe></div></div>
+
+  <div class="main-content">
+<h1>Types of Diabetes</h1>
+ <img src="diabetes-mellitus02.png" alt="Diabetes Mellitus" height="500" width="500" style="padding:20px;">
+</div>
+
+<div class="main-content">
+  <h1 style="font-family: 'Lucida Calligraphy', cursive;">The Effects of Diabetes on Your Body</h1>
+  </br></br></br>
+  <div class="container">
+    <div class="slideshow">
+      <div class="slides" id="slides">
+        <div class="slide"><img height="450px" width="800px" src="slide1.png" alt="Effect1"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide2.png" alt="Effect2"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide3.png" alt="Effect3"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide4.png" alt="Effect4"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide5.png" alt="Effect5"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide6.png" alt="Effect6"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide7.png" alt="Effect7"></div>
+        <div class="slide"><img height="450px" width="800px"src="slide8.png" alt="Effect8"></div>
+
+
+
+      </div>
+      
+      <button class="control prev" id="prev">&#9664;</button>
+      <button class="control next" id="next">&#9654;</button>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <!--sidebar-->
+    <div class="infoslide" id="infoslide">
+      <h3 id="sidebarTitle">Slide Information</h3>
+      <p id="info">This is the information about Slide 1</p>
+    </div>
+  </div>
+  <script>
+    const slides = document.getElementById('slides');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const dots = document.getElementById('dots');
+    const info = document.getElementById('info');
+    const sidebarTitle = document.getElementById('sidebarTitle');
+    const slideData = [
+{title:"Kidney damage", text:"Diabetes can also damage your kidneys and affect their ability to filter waste from your blood. "},
+{title:"Risk of Stroke", text:"Risk of stroke for someone with diabetes is four times higher than for someone without diabetes."},
+{title:"Risk of Amputation", text:"People living with diabetes are more likely to develop foot problems, such as wounds or ulcers that heal slowly. If left untreated, these wounds can become serious and may increase the risk of infection or, in severe cases, amputation. Regular foot care, early treatment of injuries, and good diabetes management can greatly reduce these risks."},
+{title:"Nerve damage from diabetes", text:"Too much sugar can injure the walls of the tiny blood vessels that nourish the nerves, especially in the legs. This can cause tingling, numbness, burning or pain that usually begins at the tips of the toes or fingers and gradually spreads upward."},
+{title:"Eye damage from diabetes", text:"Diabetes can damage the blood vessels of the eye. This could lead to blindness."},
+{title:"Skin and mouth conditions", text:"Diabetes may leave you more prone to skin problems, including bacterial and fungal infections."},
+{title:"Hearing impairment",text:"Hearing problems are more common in people with diabetes."},
+{title:"Alzheimer's disease",text:"Type 2 diabetes may increase the risk of dementia, such as Alzheimer's disease."}
+
+
+];
+
+
+let index = 0;
+const total = slides.children.length;
+
+
+function updateSlide(){
+slides.style.transform = `translateX(-${index * 100}%)`;
+document.querySelectorAll('.dot').forEach((d,i)=>{
+d.classList.toggle('active', i===index);
+});
+sidebarTitle.textContent = slideData[index].title;
+info.textContent = slideData[index].text;
+}
+
+
+for(let i=0;i<total;i++){
+const dot=document.createElement('div');
+dot.className='dot'+(i===0?' active':'');
+dot.addEventListener('click',()=>{index=i;updateSlide();});
+dots.appendChild(dot);
+}
+
+
+prev.addEventListener('click',()=>{index=(index-1+total)%total;updateSlide();});
+next.addEventListener('click',()=>{index=(index+1)%total;updateSlide();});
+
+
+updateSlide();
+</script>
+</br></br></br></br></br></br></br></br></br>
+</body>
+</html>

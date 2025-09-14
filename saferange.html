@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diabetes — Safe Ranges & Diagnosis Quick Reference</title>
+  <style>
+    :root{
+      --bg:#faf7f3;
+      --card:#fff;
+      --good:#e6f9e9;
+      --warn:#fff4e6;
+      --bad:#fdecea;
+      --muted:#555;
+      --accent:#8b5e3c;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{background:var(--bg); margin:18px; color:#222}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:4px 0 12px;color:var(--muted)}
+    .toolbar{margin-left:auto;display:flex;gap:8px;align-items:center}
+    button{background:var(--accent); color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);border:2px solid rgba(139,94,60,0.06)}
+    .card h3{margin:0 0 6px;font-size:16px;color:var(--accent)}
+    .range{font-weight:700;font-size:18px;margin:6px 0}
+    .meta{color:var(--muted);font-size:13px}
+    .note{margin-top:8px;font-size:14px}
+    .citation{font-size:12px;color:#444;margin-top:6px}
+    .main-content{
+        
+  text-align: center;
+  margin-left: 220px;
+  padding: 20px;}
+  .sidebar{
+  text-align: center;
+  width: 230px;
+  background: rgba(30, 13, 14, 0.9);
+  color: rgb(251, 248, 248);
+  height: 100vh;
+  font-size: 18px;
+   position: fixed;}
+.sidebar a{
+  text-decoration: none;
+  color: rgb(251, 248, 248);
+  display:block;
+  margin: 10px 0;}  
+  </style>
+  </style>
+</head>
+
+
+<body>
+   <div class="sidebar">
+  <h2>Menu</h2>
+  <a href="index.html">Home</a>
+  <a href="diabetes.html">Diabetes</a>
+  <a href="contacts.html">Contact Helpline</a>
+  <a href="symptoms.html">Check Your Symptoms</a>
+  <a href="saferange.html">Check Your Safe Range</a>
+  </div>
+  <div class="main-content">
+  <header>
+    <h1>Diabetes: Safe Ranges & Diagnosis</h1>
+    <div class="toolbar">
+      <button id="toggleUnits">Show mmol/L</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="card">
+        <h3>Hemoglobin A1C</h3>
+        <div id="a1cRange" class="range">Normal: &lt; 5.7% · Prediabetes: 5.7%–6.4% · Diabetes: ≥ 6.5%</div>
+        <div class="meta">Average sugar of last 2–3 months.</div>
+      </article>
+
+      <article class="card">
+        <h3>Fasting Plasma Glucose</h3>
+        <div id="fpgRange" class="range">Normal: &lt; 100 mg/dL (5.6 mmol/L) · Prediabetes: 100–125 mg/dL (5.6–6.9 mmol/L) · Diabetes: ≥126 mg/dL (≥7.0 mmol/L)</div>
+      </article>
+
+      <article class="card">
+        <h3>2-hour OGTT</h3>
+        <div id="ogttRange" class="range">Normal: &lt; 140 mg/dL (7.8 mmol/L) · Prediabetes: 140–199 mg/dL (7.8–11.0 mmol/L) · Diabetes: ≥200 mg/dL (≥11.1 mmol/L)</div>
+      </article>
+
+      <article class="card">
+        <h3>Random Glucose</h3>
+        <div id="rndRange" class="range">Diabetes: ≥200 mg/dL (≥11.1 mmol/L) + symptoms</div>
+      </article>
+    </section>
+
+    <div class="note">
+      <b>Who is diabetic?</b><br>
+      A person is considered diabetic if they have:<br>
+      - HbA1c ≥ 6.5%, OR<br>
+      - Fasting ≥126 mg/dL, OR<br>
+      - 2-hour OGTT ≥200 mg/dL, OR<br>
+      - Random ≥200 mg/dL with symptoms.<br>
+      <i>(Usually confirmed with repeat testing.)</i>
+    </div>
+  </main>
+
+  <script>
+    const btn = document.getElementById('toggleUnits');
+    const fpg = document.getElementById('fpgRange');
+    const ogtt = document.getElementById('ogttRange');
+    const rnd = document.getElementById('rndRange');
+    let showingMg = true;
+
+    function mgdlToMmol(mg){ return (mg/18).toFixed(1); }
+
+    btn.addEventListener('click',()=>{
+      if(showingMg){
+        fpg.textContent = `Normal: <5.6 mmol/L · Prediabetes: 5.6–6.9 mmol/L · Diabetes: ≥7.0 mmol/L`;
+        ogtt.textContent = `Normal: <7.8 mmol/L · Prediabetes: 7.8–11.0 mmol/L · Diabetes: ≥11.1 mmol/L`;
+        rnd.textContent = `Diabetes: ≥11.1 mmol/L + symptoms`;
+        btn.textContent = "Show mg/dL";
+        showingMg=false;
+      } else {
+        fpg.textContent = `Normal: <100 mg/dL (5.6 mmol/L) · Prediabetes: 100–125 mg/dL (5.6–6.9 mmol/L) · Diabetes: ≥126 mg/dL (≥7.0 mmol/L)`;
+        ogtt.textContent = `Normal: <140 mg/dL (7.8 mmol/L) · Prediabetes: 140–199 mg/dL (7.8–11.0 mmol/L) · Diabetes: ≥200 mg/dL (≥11.1 mmol/L)`;
+        rnd.textContent = `Diabetes: ≥200 mg/dL (≥11.1 mmol/L) + symptoms`;
+        btn.textContent = "Show mmol/L";
+        showingMg=true;
+      }
+    });
+  </script>
+</div>
+</body>
+</html>

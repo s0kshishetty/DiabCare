@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Symptoms Check</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div class="sidebar">
+  <h2>Menu</h2>
+  <a href="index.html">Home</a>
+  
+  <a href="diabetes.html">Diabetes</a>
+  <a href="contacts.html">Contact Helpline</a>
+  <a href="symptoms.html">Check Your Symptoms</a>
+  <a href="saferange.html">Check Your Safe Range</a>
+
+  </div>
+
+  <div class="main-content">
+    <h1 id="greeting"></h1>
+    <script>
+      const name=localStorage.getItem('username');
+      if (name){
+        document.getElementById('greeting').textContent='Hello, ${name}!';
+      }
+    </script>
+    <h2>Welcome to DiabCare.</h2>
+    <h3>Check your symptoms of diabtes-</h3>
+
+   <form id="symptomForm">
+     <div class="symptoms-container">
+      <div class="symptoms-list"></div>
+      <label class="symptom"><input type="checkbox" name="symptom"> Frequent urination</label>
+      <label class="symptom"><input type="checkbox" name="symptom"> Increased thirst</label>
+      <label class="symptom"><input type="checkbox" name="symptom"> Unexplained weight loss</label>
+      <label class="symptom"><input type="checkbox" name="symptom"> Blurred vision</label>
+      <label class="symptom"><input type="checkbox" name="symptom"> Fatigue</label>
+      <label class="symptom"><input type="checkbox" name="symptom"> Slow healing wounds</label>
+      </div>
+      <button type="submit">Check</button>
+    </div>
+    </form>
+
+    <div id="result"></div>
+
+</body>
+</html>
